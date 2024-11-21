@@ -14,4 +14,4 @@ media/
 .idea/
 
 # Virtual Environment
-.env/
+.venv/

@@ -63,12 +63,12 @@ WSGI_APPLICATION = 'Fastworldtec.wsgi.application'  # WSGI application module
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # Database engine (MySQL)
-        'NAME': 'fastworldtec_database',  # Name of the database
-        'HOST': 'localhost',  # Database host
-        'PORT': '3306',  # Database port
-        'USER': 'root',  # Database user
-        'PASSWORD': 'jayzac',  # Database password
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'fastworldtec',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
