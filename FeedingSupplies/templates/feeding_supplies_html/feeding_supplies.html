@@ -1,0 +1,91 @@
+<!-- Extend the base template -->
+{% extends 'global_templates/base.html' %}
+
+<!-- Load static files tag -->
+{% load static %}
+
+<!-- Set the title of the page to "Feeding Supplies" -->
+{% block title %} Feeding Supplies {% endblock %}
+
+<!-- Start the content block -->
+{% block content %}
+
+<!-- Include the global navigation bar -->
+
+{% include 'global_templates/global_navbar.html' %}
+
+
+<!-- Section for displaying course details -->
+<section id="product-page-detail" class="product-page-detail">
+    <!-- Heading for the feeding supplies section -->
+    <h1 id="explore">All Feeding Supplies</h1>
+
+    <!-- Form for searching feeding supplies -->
+    <form id="search-form" class="search-form">
+        <!-- Container for the search input and clear button -->
+        <div class="search-input-container">
+            <!-- Search input field -->
+            <input type="text" id="search-input" class="search-input" placeholder="Search feeding supplies...">
+            <!-- Button to clear the search input -->
+            <button type="button" id="clear-button" class="clear-button" aria-label="Clear search">&times;</button>
+        </div>
+        <!-- Submit button for the search form -->
+        <button type="submit" class="search-button">
+            <!-- Search icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Circle in the search icon -->
+                <circle cx="11" cy="11" r="8"></circle>
+                <!-- Line in the search icon -->
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+    </form>
+
+    <!-- Message displayed when no feeding supplies match the search query for live searching and redirect client back -->
+    <p id="no-results-message" class="no-results-message">No feeding supplies found:
+        <a href="{% url 'feeding_supplies:feeding_supplies' %}"> Go back</a>
+    </p>
+
+    <!-- Container for the course items -->
+    <div id="feeding-supplies-container" class="product-page-detail-grid">
+
+        <!-- Check availability of feeding supplies -->
+        {% if feeding_supplies %}
+        <!-- Loop through each feeding supply -->
+        {% for feeding_supply in feeding_supplies %}
+        <!-- Feeding supply card with data attributes for title and description -->
+        <div class="product-page-detail-card" data-title="{{ feeding_supply.title }}"
+             data-description="{{ feeding_supply.description }}">
+            <!-- Image of the feeding supply -->
+                    <img class="product-page-detail-image" src="{{ feeding_supply.image.url }}" alt="Feeding Supply Image">
+            <!-- Title of the feeding supply -->
+            <h3 class="product-page-detail-title">{{ feeding_supply.title }}</h3>
+
+            <!-- Check if price is available and render it -->
+            {% if feeding_supply.price %}
+            <!-- Display the price of the feeding supply -->
+            <span class="product-page-detail-price">{{ feeding_supply.price }}</span>
+            {% endif %}
+            <!-- Description of the feeding supply -->
+            <p class="product-page-detail-description">{{ feeding_supply.description }}</p>
+            <!-- Link to get the feeding supply -->
+            <a href="{{ feeding_supply.affiliate_link }}" class="product-page-detail-link">Get it now</a>
+
+        </div>
+        <!-- End for loop -->
+        {% endfor %}
+        <!-- End if condition -->
+        {% endif %}
+    </div>
+</section>
+
+
+<!-- Include the global footer -->
+{% include 'global_templates/global_footer.html' %} 
+
+<!-- Link to the JavaScript file feeding_supplies.js -->
+    <script src="{% static 'js/feeding_supplies.js' %}"></script>
+
+<!-- End the content block -->
+{% endblock %}

@@ -5,7 +5,7 @@
 {% load static %}
 
 <!-- Set the title of the page to "10 OF THE HIGHEST PAYING AFFILIATE PROGRAMS 2024" -->
-{% block title %} 10 OF THE HIGHEST PAYING AFFILIATE PROGRAMS 2024 {% endblock %}
+{% block title %} BeginMama: Top Choice for New Moms - Essentials from Maternity to Baby Care {% endblock %}
 
 <!-- Start the content block -->
 {% block content %}
@@ -16,9 +16,9 @@
         <!-- Logo section -->
         <div class="logo">
             <!-- Company logo image -->
-            <img src="{% static 'images/fastworldteclogo.png' %}" alt="Fastworldtec Logo" class="logo-image">
+            <img src="{% static 'images/BeginMamaLogo.png' %}" alt="BeginMama Logo" class="logo-image">
             <!-- Company name/logo text, linked to homepage -->
-            <a id="logo-text" href="{% url 'homepage:homepage' %}"><span class="logo-text">Fastworldtec beginmama</span></a>
+            <a id="logo-text" href="{% url 'homepage:homepage' %}"><span class="logo-text">BeginMama</span></a>
         </div>
 
         <!-- Theme mode switcher -->
@@ -43,18 +43,20 @@
 </header>
 
 
-<!-- Hero Section -->
+{% comment %} <!-- Hero Section -->
 <section id="home" class="hero">
     <!-- Content of the hero section -->
     <div class="hero-content">
         <!-- Main heading of the hero section -->
-        <h1>Welcome to beginmama</h1>
+        <h1>Begin Your Best Mama Moments with Us</h1>
         <!-- Subheading of the hero section -->
-        <p>Your gateway to digital excellence</p>
+        <p>New mom, embrace your beautiful journeyWhere giggles outshine tears, and joy conquers allEach sunrise brings a precious milestoneYour strength blossoms beyond imagination
+
+            BeginMama, your steadfast companionIlluminating paths, lifting your spirit highBecause you, amazing mother, deserve nothing less than extraordinary</p>
         <!-- Call-to-action button linking to the latest software releases section -->
         <a href="#latest-software-releases" class="cta-button">Explore Latest Software Releases</a>
     </div>
-</section>
+</section> {% endcomment %}
 
 <!-- Latest Software Releases Section -->
 <section id="latest-software-releases" class="latest-software">
@@ -95,49 +97,71 @@
     <h2>Our Curated Selection</h2>
     <!-- Grid container for product categories -->
     <div class="product-grid">
-        <!-- Product card for Software -->
+        <!-- Product card for Baby Sleep Essentials -->
         <div class="product-card">
-            <!-- Icon representing software -->
-            <i class="fas fa-laptop-code"></i>
+            <!-- Icon representing baby sleep essentials -->
+            <i class="fas fa-bed"></i>
             <!-- Product category title -->
-            <h3>Software</h3>
+            <h3>Baby Sleep Essentials</h3>
             <!-- Description of the product category -->
-            <p>Cutting-edge solutions for every need</p>
-            <!-- Link to the software products page -->
-            <a href="{% url 'software:software' %}" class="find-product">Find Software</a>
+            <p>Essential products for every need</p>
+            <!-- Link to the baby sleep essentials products page -->
+            <a href="{% url 'sleep_essentials:sleep_essentials' %}" class="find-product">Find Baby Sleep Essentials</a>
         </div>
-        <!-- Product card for Themes -->
+        <!-- Product card for  Daily Baby Essentials-->
         <div class="product-card">
-            <!-- Icon representing themes -->
-            <i class="fas fa-paint-brush"></i>
+            <!-- Icon representing daily essentials -->
+            <i class="fas fa-box"></i>
             <!-- Product category title -->
-            <h3>Themes</h3>
+            <h3>Daily Baby Essentials</h3>
             <!-- Description of the product category -->
-            <p>Beautiful designs to elevate your brand</p>
-            <!-- Link to the themes products page -->
-            <a href="{% url 'themes:themes' %}" class="find-product">Find Themes</a>
+            <p>Essential products for every need</p>
+            <!-- Link to the daily essentials products page -->
+            <a href="{% url 'daily_essentials:daily_essentials' %}" class="find-product">Find Daily Essentials</a>
         </div>
-        <!-- Product card for Tools -->
+        <!-- Product card for Large Items -->
         <div class="product-card">
-            <!-- Icon representing tools -->
-            <i class="fas fa-tools"></i>
+            <!-- Icon representing large items -->
+            <i class="fas fa-dolly"></i>
             <!-- Product category title -->
-            <h3>Tools</h3>
+            <h3>Large Baby Items</h3>
             <!-- Description of the product category -->
-            <p>Essential utilities for productivity</p>
-            <!-- Link to the tools products page -->
-            <a href="{% url 'tools:tools' %}" class="find-product">Find Tools</a>
+            <p>Cribs, strollers, and other large essentials</p>
+            <!-- Link to the large items products page -->
+            <a href="{% url 'large_items:large_items' %}" class="find-product">Find Large Items</a>
+        </div> 
+        <!-- Product card for Feeding Supplies -->
+        <div class="product-card">
+            <!-- Icon representing feeding supplies -->
+            <i class="fas fa-baby-carriage"></i>
+            <!-- Product category title -->
+            <h3>Feeding Supplies</h3>
+            <!-- Description of the product category -->
+            <p>Essential feeding supplies for your baby</p>
+            <!-- Link to the feeding supplies products page -->
+            <a href="{% url 'feeding_supplies:feeding_supplies' %}" class="find-product">Find Feeding Supplies</a>
         </div>
-        <!-- Product card for Courses -->
+        <!-- Product card for Baby Clothes -->
         <div class="product-card">
-            <!-- Icon representing courses -->
-            <i class="fas fa-graduation-cap"></i>
+            <!-- Icon representing baby clothes -->
+            <i class="fas fa-baby"></i>
             <!-- Product category title -->
-            <h3>Courses</h3>
+            <h3>Baby Clothes</h3>
             <!-- Description of the product category -->
-            <p>Learn from industry experts and grow</p>
-            <!-- Link to the courses products page -->
-            <a href="{% url 'courses:courses' %}" class="find-product">Find Courses</a>
+            <p>Comfortable and stylish baby wear</p>
+            <!-- Link to the baby clothes products page -->
+            <a href="{% url 'baby_clothes:baby_clothes' %}" class="find-product">Find Baby Clothes</a>
+        </div>
+        <!-- Product card for Toiletries -->
+        <div class="product-card">
+            <!-- Icon representing toiletries -->
+            <i class="fas fa-pump-soap"></i>
+            <!-- Product category title -->
+            <h3>Toiletries</h3>
+            <!-- Description of the product category -->
+            <p>Essential baby care products</p>
+            <!-- Link to the toiletries products page -->
+            <a href="{% url 'toiletries:toiletries' %}" class="find-product">Find Toiletries</a>
         </div>
     </div>
 </section>
@@ -180,10 +204,9 @@
 <!-- About Section -->
 <section id="about" class="about">
     <!-- Heading for the about section -->
-    <h2>About Fastworldtec</h2>
+    <h2>About BeginMama</h2>
     <!-- Description about Fastworldtec -->
-    <p>We're passionate about bringing you the best in software, themes, tools, and courses. Our team
-        of experts curates only the finest products to help you succeed in the digital world.
+    <p>Begin Your Best Mama Moments with Us.
     </p>
 </section>
 
@@ -213,8 +236,8 @@
 
         <!-- Section for the website's name and slogan -->
         <div class="footer-section">
-            <h3>Fastworldtec</h3>
-            <p>Your trusted source for digital excellence.</p>
+            <h3>BeginMama</h3>
+            <p>Begin Your Best Mama Moments with Us.</p>
         </div>
 
         <!-- Section for quick navigation links -->
@@ -245,7 +268,7 @@
 
     <!-- Footer bottom section with copyright information -->
     <div class="footer-bottom">
-        <p>&copy; 2024 Fastworldtec. All rights reserved.</p>
+        <p>&copy; 2024 BeginMama. All rights reserved.</p>
     </div>
 </footer>
 

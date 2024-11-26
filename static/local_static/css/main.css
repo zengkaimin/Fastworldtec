@@ -1,7 +1,7 @@
 /* Homepage CSS */
 :root {
     /* Define CSS variables for colors */
-    --primary-color: #4a90e2; /* Primary color used throughout the site */
+    --primary-color: #90c4b2; /* Primary color used throughout the site */
     --secondary-color: #50c878; /* Secondary color for accents */
     --background-color: #f8f9fa; /* Background color for the page */
     --text-color: #333; /* Standard text color */
@@ -316,31 +316,29 @@ nav {
 /* Theme Variables */
 :root {
     /* Define more theme variables */
-    --bg-color: #f8f9fa; /* Background color for light theme */
-    --text-color: #333; /* Text color for light theme */
-    --primary-color: #4a90e2; /* Primary color for light theme */
-    --secondary-color: #50c878; /* Secondary color for light theme */
-    --white: #ffffff; /* White color for light theme */
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --primary-color: #90c4b2;
+    --secondary-color: #50c878;
+    --white: #ffffff;
 }
 
 /* Dark Theme */
 [data-theme="dark"] {
-    /* Dark theme color variables */
-    --bg-color: #333; /* Background color for dark theme */
-    --text-color: #f8f9fa; /* Text color for dark theme */
-    --primary-color: #6aa8e8; /* Primary color for dark theme */
-    --secondary-color: #68d891; /* Secondary color for dark theme */
-    --white: #444; /* White color for dark theme */
+    --bg-color: #333;
+    --text-color: #f8f9fa;
+    --primary-color: #90c4b2;
+    --secondary-color: #68d891;
+    --white: #444;
 }
 
 /* Sepia Theme */
 [data-theme="sepia"] {
-    /* Sepia theme color variables */
-    --bg-color: #f1e7d0; /* Background color for sepia theme */
-    --text-color: #5b4636; /* Text color for sepia theme */
-    --primary-color: #8b4513; /* Primary color for sepia theme */
-    --secondary-color: #a0522d; /* Secondary color for sepia theme */
-    --white: #faf0e6; /* White color for sepia theme */
+    --bg-color: #f1e7d0;
+    --text-color: #5b4636;
+    --primary-color: #90c4b2;
+    --secondary-color: #a0522d;
+    --white: #faf0e6;
 }
 
 /* Theme Switcher */
@@ -494,7 +492,7 @@ nav {
 
 .software-affiliate-link {
     display: block; /* Block layout */
-    background-color: #007bff; /* Blue background */
+    background-color: var(--primary-color); /* Blue background */
     color: #ffffff; /* White text */
     text-align: center; /* Center text */
     padding: 0.75rem 1rem; /* Padding inside the link */
@@ -504,7 +502,7 @@ nav {
 }
 
 .software-affiliate-link:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: var(--secondary-color); /* Darker blue on hover */
 }
 
 /* Media Queries for Responsive Design */
@@ -591,7 +589,7 @@ nav {
 
 .find-product {
     display: block; /* Block layout */
-    background-color: #007bff; /* Blue background */
+    background-color: var(--primary-color); /* Blue background */
     color: #ffffff; /* White text */
     text-align: center; /* Center text */
     padding: 0.75rem 1rem; /* Padding inside the link */
@@ -603,7 +601,7 @@ nav {
 }
 
 .find-product:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: var(--secondary-color); /* Darker blue on hover */
 }
 
 /* Media Queries for Responsive Design */
@@ -700,18 +698,18 @@ nav {
 }
 
 .blog-link {
-    display: inline-block; /* Inline block layout */
-    padding: 0.5rem 1rem; /* Padding inside the link */
-    background-color: #007bff; /* Blue background color */
-    color: #fff; /* White text color */
-    text-decoration: none; /* No underline */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 0.9rem; /* Font size for the link */
-    transition: background-color 0.3s ease-in-out; /* Smooth transition on hover */
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);  /* 使用主题色变量 */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .blog-link:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: var(--secondary-color);  /* 使用次要色变量 */
 }
 
 /* Media Queries for Responsiveness */
@@ -1059,7 +1057,7 @@ footer {
 
 .product-page-detail-link {
     display: block; /* Block layout */
-    background-color: #007bff; /* Blue background */
+    background-color: var(--primary-color); /* Blue background */
     color: #ffffff; /* White text color */
     text-align: center; /* Center align text */
     padding: 0.75rem 1rem; /* Padding inside the link */
@@ -1069,7 +1067,7 @@ footer {
 }
 
 .product-page-detail-link:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: var(--secondary-color); /* Darker blue on hover */
 }
 
 /* Search Button CSS */
@@ -1132,7 +1130,7 @@ footer {
 
 /* Search button styles */
 .search-button {
-    background-color: #4a90e2; /* Blue background color */
+    background-color: var(--primary-color); /* Blue background color */
     border: none; /* No border */
     color: white; /* White text color */
     padding: 15px 20px; /* Padding inside button */
@@ -1151,7 +1149,7 @@ footer {
 
 /* Hover effect for the search button */
 .search-button:hover {
-    background-color: #2a70c2; /* Darker blue on hover */
+    background-color: var(--secondary-color); /* Darker blue on hover */
 }
 
 /* Focus effect for the search button */
@@ -1539,7 +1537,7 @@ footer {
     bottom: 20px;
     right: 5px;
     /* Button background color */
-    background-color: #007bff;
+    background-color: #90c4b2;
     /* Text color */
     color: #fff;
     /* Remove border */
@@ -1600,27 +1598,27 @@ footer {
 
 /* Style for the arrow button */
 .arrow-button {
-    margin-left: 10px; /* Adds space between the title and the button */
-    display: flex; /* Aligns children (arrow) horizontally */
-    align-items: center; /* Vertically centers the children */
-    justify-content: center; /* Centers the arrow inside the button */
-    width: 40px; /* Sets the width of the button */
-    height: 40px; /* Sets the height of the button */
-    text-decoration: none; /* Removes underline from the link */
-    background-color: #007BFF; /* Background color of the button */
-    border-radius: 4px; /* Rounds the corners of the button */
-    transition: background-color 0.3s, transform 0.3s; /* Adds transition effects for hover */
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+    background-color: var(--primary-color);  /* 使用主题色变量 */
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Style for the arrow button on hover */
+.arrow-button:hover {
+    background-color: var(--secondary-color);  /* 使用次要色变量 */
+    transform: translateY(-2px);
 }
 
 /* Style for the arrow inside the button */
 .arrow {
-    font-size: 24px; /* Sets the font size of the arrow */
-    color: white; /* Sets the color of the arrow */
-}
-
-/* Style for the button on hover */
-.arrow-button:hover {
-    background-color: #0056b3; /* Darker background color on hover */
-    transform: translateY(-2px); /* Slight lift effect on hover */
+    font-size: 24px;
+    color: white;
 }
 

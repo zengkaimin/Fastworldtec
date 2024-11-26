@@ -1,0 +1,53 @@
+{% extends 'global_templates/base.html' %}
+{% load static %}
+
+{% block title %} Sleep Essentials {% endblock %}
+
+{% block content %}
+
+{% include 'global_templates/global_navbar.html' %}
+
+<section id="product-page-detail" class="product-page-detail">
+    <h1 id="explore">All Sleep Essentials</h1>   
+
+    <form id="search-form" class="search-form">
+        <div class="search-input-container">
+            <input type="text" id="search-input" class="search-input" placeholder="Search sleep essentials...">
+            <button type="button" id="clear-button" class="clear-button" aria-label="Clear search">&times;</button>
+        </div>
+        <button type="submit" class="search-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+    </form>
+
+    <p id="no-results-message" class="no-results-message">No sleep essentials found:
+        <a href="{% url 'sleep_essentials:sleep_essentials' %}"> Go back</a>
+    </p>
+
+    <div id="toiletries-container" class="product-page-detail-grid">
+        {% if sleep_essentials %}
+        {% for sleep_essential in sleep_essentials %}
+        <div class="product-page-detail-card" data-title="{{ sleep_essential.title }}"
+             data-description="{{ sleep_essential.description }}">
+            <img class="product-page-detail-image" src="{{ sleep_essential.image.url }}" alt="Sleep Essential Image">
+            <h3 class="product-page-detail-title">{{ sleep_essential.title }}</h3>
+            {% if sleep_essential.price %}
+            <span class="product-page-detail-price">{{ sleep_essential.price }}</span>
+            {% endif %}
+            <p class="product-page-detail-description">{{ sleep_essential.description }}</p>
+            <a href="{{ sleep_essential.affiliate_link }}" class="product-page-detail-link">Get it now</a>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</section>
+
+{% include 'global_templates/global_footer.html' %}
+
+<script src="{% static 'js/sleep_essentials.js' %}"></script>
+
+{% endblock %} 
