@@ -257,7 +257,7 @@ nav {
     .nav-links li {
         /* Spacing between mobile menu items */
         margin: 1.5rem 0; /* Space above and below */
-        opacity: 0; /* Initially hidden */
+        opacity: 0.9; /* Initially hidden */
     }
 
     .burger {
@@ -487,7 +487,7 @@ nav {
 
 .latest-software h2 {
     font-size: 2.5rem;
-    margin-bottom: 1rem;  /* 减小底部间距 */
+    margin-bottom: 1rem;  /* 减小底部距 */
     color: #333;
     text-align: center;  /* 添加居中对齐 */
     width: 100%;  /* 确保标题占满宽度 */
@@ -531,14 +531,33 @@ nav {
 }
 
 .software-price {
-    display: inline-block; /* Inline block layout */
-    font-size: 1.2rem; /* Medium font size */
-    font-weight: bold; /* Bold text */
-    color: #28a745; /* Green color */
-    background-color: #e9f7ef; /* Light green background */
-    padding: 0.3rem 0.7rem; /* Padding inside the price */
-    border-radius: 20px; /* Rounded corners */
-    margin: 0 1rem 0.5rem; /* Spacing around the price */
+    display: inline-flex;  /* 改为 inline-flex */
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;  /* 稍微减小字号 */
+    font-weight: 600;
+    color: var(--secondary-color);  /* 使用第二主题色 */
+    background-color: rgba(80, 200, 120, 0.1);  /* 使用第二主题色的半透明背景 */
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin: 0.5rem 0;  /* 调整上下边距 */
+    min-width: auto;  /* 移除最小宽度限制 */
+    max-width: fit-content;  /* 根据内容自适应宽度 */
+    position: relative;  /* 为伪元素定位 */
+    transition: all 0.3s ease;
+}
+
+.price-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;  /* 元素之间的间距 */
+    margin: 0 1rem;  /* 保持左右边距 */
+}
+
+.software-price:hover {
+    background-color: rgba(80, 200, 120, 0.2);  /* 使用第二主题色的半透明背景 */
+    transform: translateY(-1px);  /* 轻微上浮效果 */
+    color: var(--secondary-color);  /* 保持第二主题色 */
 }
 
 .software-description {
@@ -894,41 +913,90 @@ nav {
     }
 }
 
-/* About Section */
+/* About Section Styles */
 .about {
-    padding: 5rem 10%; /* Padding around the section */
-    background-color: var(--white); /* White background color */
-    text-align: center; /* Center align text */
+    padding: 5rem 10%;
+    background-color: var(--white);
 }
 
 .about h2 {
-    font-size: 2.5rem; /* Font size for the heading */
-    margin-bottom: 2rem; /* Space below heading */
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #333;
 }
 
-/* Media Queries for Responsive Design */
+.about-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
 
-/* For screens up to 768px wide */
-@media (max-width: 768px) {
+.about-content > div {
+    margin-bottom: 3rem;
+}
+
+.about-content h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 1.5rem;
+}
+
+.about-offers ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-offers li {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.about-offers li::before {
+    content: "•";
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.about-offers li strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 768px) {
+    .about {
+        padding: 3rem 5%;
+    }
+
     .about h2 {
-        font-size: 2.3rem; /* Adjust heading font size for medium screens */
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .about-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .about-content p,
+    .about-offers li {
+        font-size: 1rem;
     }
 }
-
-/* For screens up to 600px wide */
-@media screen and (max-width: 600px) {
-    .about h2 {
-        font-size: 2.3rem; /* Adjust heading font size for smaller screens */
-    }
-}
-
-/* For screens up to 480px wide */
-@media (max-width: 480px) {
-    .about h2 {
-        font-size: 2.3rem; /* Adjust heading font size for very small screens */
-    }
-}
-
 
 /* Contact Section */
 .contact {
@@ -1143,14 +1211,21 @@ footer {
 }
 
 .product-page-detail-price {
-    display: inline-block; /* Inline block layout */
-    font-size: 1.2rem; /* Font size for price */
-    font-weight: bold; /* Bold font weight */
-    color: #28a745; /* Green color for price */
-    background-color: #e9f7ef; /* Light green background */
-    padding: 0.3rem 0.7rem; /* Padding around price */
-    border-radius: 20px; /* Rounded corners */
-    margin: 0 1rem 0.5rem; /* Margin around price */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--secondary-color);  /* 使用第二主题色 */
+    background-color: rgba(80, 200, 120, 0.1);  /* 使用第二主题色的半透明背景 */
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin: 0.5rem 0;
+    min-width: auto;
+    max-width: fit-content;
+    position: relative;
+    gap: 0.2rem;
+    transition: all 0.3s ease;
 }
 
 .product-page-detail-description {
@@ -1833,5 +1908,50 @@ footer {
 .cta-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* 统一的价格标签样式 */
+.software-price,
+.product-page-detail-price {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--secondary-color);  /* 使用第二主题色 */
+    background-color: rgba(80, 200, 120, 0.1);  /* 使用第二主题色的半透明背景 */
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin: 0.5rem 0;
+    min-width: auto;
+    max-width: fit-content;
+    position: relative;
+    gap: 0.2rem;
+    transition: all 0.3s ease;
+}
+
+/* 货币符号样式 */
+.currency-symbol {
+    font-size: 0.85em;
+    font-weight: 500;
+    opacity: 0.9;
+    color: inherit;  /* 继承父元素的颜色 */
+}
+
+/* 价格容器样式 */
+.price-container,
+.product-page-detail-card .product-page-detail-price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 1rem;
+}
+
+/* 价格标签悬停效果 */
+.software-price:hover,
+.product-page-detail-price:hover {
+    background-color: rgba(80, 200, 120, 0.2);  /* 使用第二主题色的半透明背景 */
+    transform: translateY(-1px);  /* 轻微上浮效果 */
+    color: var(--secondary-color);  /* 保持第二主题色 */
 }
 

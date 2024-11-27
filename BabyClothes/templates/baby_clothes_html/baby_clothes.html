@@ -65,7 +65,12 @@
             <!-- Check if price is available and render it -->
             {% if baby_clothes.price %}
             <!-- Display the price of the baby clothes -->
-            <span class="product-page-detail-price">{{ baby_clothes.price }}</span>
+            <div class="price-container">
+                <span class="product-page-detail-price">
+                    <span class="currency-symbol">$</span>
+                    {{ baby_clothes.price }}
+                </span>
+            </div>
             {% endif %}
             <!-- Description of the baby clothes -->
             <p class="product-page-detail-description">{{ baby_clothes.description }}</p>
