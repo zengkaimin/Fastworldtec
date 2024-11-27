@@ -20,6 +20,12 @@ class FeedingSupplies(models.Model):
     # CharField for the affiliate link with a maximum length of 2083 characters
     affiliate_link = models.CharField(max_length=2083)
 
+    # Whether this item is featured (是否精选商品)
+    is_featured = models.BooleanField(
+        default=False, 
+        verbose_name='Featured Item (精选商品)'
+    )
+
     # DateTimeField to store the date and time when the course was created, automatically set on creation
     date_and_time_created = models.DateTimeField(auto_now_add=True)
 

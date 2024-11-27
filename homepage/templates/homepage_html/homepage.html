@@ -4,6 +4,9 @@
 <!-- Load static files tag -->
 {% load static %}
 
+<!-- 添加 CSRF token 到页面顶部 -->
+{% csrf_token %}
+
 <!-- Set the title of the page to "10 OF THE HIGHEST PAYING AFFILIATE PROGRAMS 2024" -->
 {% block title %} BeginMama: Top Choice for New Moms - Essentials from Maternity to Baby Care {% endblock %}
 
@@ -43,53 +46,211 @@
 </header>
 
 
-{% comment %} <!-- Hero Section -->
+ <!-- Hero Section -->
 <section id="home" class="hero">
     <!-- Content of the hero section -->
     <div class="hero-content">
         <!-- Main heading of the hero section -->
         <h1>Begin Your Best Mama Moments with Us</h1>
         <!-- Subheading of the hero section -->
-        <p>New mom, embrace your beautiful journeyWhere giggles outshine tears, and joy conquers allEach sunrise brings a precious milestoneYour strength blossoms beyond imagination
-
-            BeginMama, your steadfast companionIlluminating paths, lifting your spirit highBecause you, amazing mother, deserve nothing less than extraordinary</p>
-        <!-- Call-to-action button linking to the latest software releases section -->
-        <a href="#latest-software-releases" class="cta-button">Explore Latest Software Releases</a>
-    </div>
-</section> {% endcomment %}
-
-<!-- Latest Software Releases Section -->
-<section id="latest-software-releases" class="latest-software">
-    <!-- Heading for the latest software releases section -->
-    <h2>Latest Software Releases</h2>
-    <!-- Grid container for software items -->
-    <div class="software-grid">
-        <!-- Check if there are any software items to display -->
-        {% if homepage_software %}
-        <!-- Loop through each software item -->
-        {% for single_homepage_software in homepage_software %}
-        <!-- Individual software card -->
-        <div class="software-card">
-            <!-- Image of the software -->
-            <img class="software-image" src="{{single_homepage_software.image.url}}" alt="Software Image">
-            <!-- Title of the software -->
-            <h3 class="software-title">{{single_homepage_software.title}}</h3>
-            <!-- Check if the software item has a price and display it -->
-            {% if single_homepage_software.price %}
-            <!-- Price of the software -->
-            <span class="software-price">{{single_homepage_software.price}}</span>
-            {% endif %}
-            <!-- Description of the software -->
-            <p class="software-description">{{single_homepage_software.description}}</p>
-            <!-- Affiliate link to get the software -->
-            <a href="{{single_homepage_software.affiliate_link}}" class="software-affiliate-link">Get it now</a>
+        <p>Welcome to BeginMama's curated collection of must-have baby essentials! We're here to help you prepare for your beautiful journey into motherhood.</p>
+        <div class="hero-features">
+            <ul>
+                <li>Track your baby preparation progress with our smart checklist system</li>
+                <li>Find the best baby products recommended by experienced moms</li>
+                <li>Easily manage and track your purchased items</li>
+                <li>Get everything you need for your baby's arrival</li>
+            </ul>
         </div>
-        <!-- End for loop -->
+        <!-- Call-to-action button -->
+        <a href="#featured-products" class="cta-button">Let's Begin Your Journey</a>
+    </div>
+</section> 
+
+<!-- Featured Products Section -->
+<section id="featured-products" class="latest-software">
+    <!-- Heading for the featured products section -->
+    <h2>Top Picks for New Moms</h2>
+    <!-- Grid container for featured products -->
+    <div class="software-grid">
+        <!-- Baby Clothes -->
+        {% for item in featured_products.baby_clothes %}
+        <div class="software-card" id="card-bc-{{item.id}}">
+            <img class="software-image" src="{{item.image.url}}" alt="Baby Clothes Image">
+            <h3 class="software-title">{{item.title}}</h3>
+            {% if item.price %}
+            <span class="software-price">{{item.price}}</span>
+            {% endif %}
+            <p class="software-description">{{item.description}}</p>
+            <a href="{{item.affiliate_link}}" 
+               class="software-affiliate-link"
+               onclick="markAsCompleted(event, 'card-bc-{{item.id}}')">
+                Add to My Checklist
+            </a>
+        </div>
         {% endfor %}
-        <!-- End if condition -->
-        {% endif %}
+
+        <!-- Toiletries -->
+        {% for item in featured_products.toiletries %}
+        <div class="software-card" id="card-tl-{{item.id}}">
+            <img class="software-image" src="{{item.image.url}}" alt="Product Image">
+            <h3 class="software-title">{{item.title}}</h3>
+            {% if item.price %}
+            <span class="software-price">{{item.price}}</span>
+            {% endif %}
+            <p class="software-description">{{item.description}}</p>
+            <a href="{{item.affiliate_link}}" 
+               class="software-affiliate-link"
+               onclick="markAsCompleted(event, 'card-tl-{{item.id}}')">
+                Add to My Checklist
+            </a>
+        </div>
+        {% endfor %}
+
+        <!-- Sleep Essentials -->
+        {% for item in featured_products.sleep_essentials %}
+        <div class="software-card" id="card-se-{{item.id}}">
+            <img class="software-image" src="{{item.image.url}}" alt="Product Image">
+            <h3 class="software-title">{{item.title}}</h3>
+            {% if item.price %}
+            <span class="software-price">{{item.price}}</span>
+            {% endif %}
+            <p class="software-description">{{item.description}}</p>
+            <a href="{{item.affiliate_link}}" 
+               class="software-affiliate-link"
+               onclick="markAsCompleted(event, 'card-se-{{item.id}}')">
+                Add to My Checklist
+            </a>
+        </div>
+        {% endfor %}
+
+        <!-- Daily Essentials -->
+        {% for item in featured_products.daily_essentials %}
+        <div class="software-card" id="card-de-{{item.id}}">
+            <img class="software-image" src="{{item.image.url}}" alt="Product Image">
+            <h3 class="software-title">{{item.title}}</h3>
+            {% if item.price %}
+            <span class="software-price">{{item.price}}</span>
+            {% endif %}
+            <p class="software-description">{{item.description}}</p>
+            <a href="{{item.affiliate_link}}" 
+               class="software-affiliate-link"
+               onclick="markAsCompleted(event, 'card-de-{{item.id}}')">
+                Add to My Checklist
+            </a>
+        </div>
+        {% endfor %}
+
+        <!-- Feeding Supplies -->
+        {% for item in featured_products.feeding_supplies %}
+        <div class="software-card" id="card-fs-{{item.id}}">
+            <img class="software-image" src="{{item.image.url}}" alt="Product Image">
+            <h3 class="software-title">{{item.title}}</h3>
+            {% if item.price %}
+            <span class="software-price">{{item.price}}</span>
+            {% endif %}
+            <p class="software-description">{{item.description}}</p>
+            <a href="{{item.affiliate_link}}" 
+               class="software-affiliate-link"
+               onclick="markAsCompleted(event, 'card-fs-{{item.id}}')">
+                Add to My Checklist
+            </a>
+        </div>
+        {% endfor %}
+
+        <!-- Large Items -->
+        {% for item in featured_products.large_items %}
+        <div class="software-card" id="card-li-{{item.id}}">
+            <img class="software-image" src="{{item.image.url}}" alt="Product Image">
+            <h3 class="software-title">{{item.title}}</h3>
+            {% if item.price %}
+            <span class="software-price">{{item.price}}</span>
+            {% endif %}
+            <p class="software-description">{{item.description}}</p>
+            <a href="{{item.affiliate_link}}" 
+               class="software-affiliate-link"
+               onclick="markAsCompleted(event, 'card-li-{{item.id}}')">
+                Add to My Checklist
+            </a>
+        </div>
+        {% endfor %}
     </div>
 </section>
+
+<script>
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+function markAsCompleted(event, cardId) {
+    event.preventDefault();
+    
+    const card = document.getElementById(cardId);
+    const button = card.querySelector('.software-affiliate-link');
+    // 从 cardId 中提取产品类型和ID
+    const [, type, id] = cardId.split('-');  // 例如 'card-bc-1' 会得到 ['card', 'bc', '1']
+    const productId = `${type}-${id}`;  // 组合成 'bc-1' 这样的格式
+    const isCompleted = card.classList.contains('completed');
+    
+    // 直接从页面获取 CSRF token
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    
+    // 创建 FormData 对象
+    const formData = new FormData();
+    formData.append('product_id', productId);
+    formData.append('action', isCompleted ? 'cancel' : 'complete');
+    
+    // 发送请求到服务器
+    fetch('{% url "homepage:mark_completed" %}', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrftoken,
+        },
+        credentials: 'same-origin',
+        body: formData,
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === 'success') {
+            if (isCompleted) {
+                // 取消完成状态
+                card.classList.remove('completed');
+                button.textContent = 'Add to My Checklist';
+            } else {
+                // 添加完成状态
+                card.classList.add('completed');
+                button.textContent = 'Remove from Checklist';
+                window.open(button.href, '_blank');
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+// 页面加载时检查 cookies 恢复完成状态
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.software-card');
+    cards.forEach(card => {
+        const [, type, id] = card.id.split('-');
+        const productId = `${type}-${id}`;
+        const cookieName = `completed_product_${productId}`;
+        if (getCookie(cookieName) === 'true') {
+            card.classList.add('completed');
+            const button = card.querySelector('.software-affiliate-link');
+            button.textContent = 'Remove from Checklist';
+        }
+    });
+});
+</script>
 
 <!-- Products Section -->
 <section id="products" class="products">

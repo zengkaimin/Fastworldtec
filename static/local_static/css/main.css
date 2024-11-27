@@ -384,23 +384,83 @@ nav {
 
 /* Hero Section */
 .hero {
-    height: 100vh; /* Full viewport height */
-    display: flex; /* Flexbox layout */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
-    text-align: center; /* Center text */
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); /* Gradient background */
-    color: var(--white); /* White text color */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    padding: 120px 0;  /* 使用固定的上下内边距，而不是 min-height */
+    margin-top: 60px;  /* 为固定导航栏留出空间 */
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 20px;
+    width: 100%;
 }
 
 .hero-content h1 {
-    font-size: 3rem; /* Large font size */
-    margin-bottom: 1rem; /* Space below the heading */
+    font-size: clamp(2rem, 5vw, 3rem);  /* 响应式字体大小 */
+    margin-bottom: 1.5rem;
+    color: #fff;
+    line-height: 1.2;  /* 调整行高 */
 }
 
 .hero-content p {
-    font-size: 1.2rem; /* Medium font size */
-    margin-bottom: 2rem; /* Space below the paragraph */
+    font-size: clamp(1rem, 3vw, 1.2rem);  /* 响应式字体大小 */
+    margin-bottom: 2rem;
+    color: #fff;
+    line-height: 1.6;
+    max-width: 600px;  /* 限制段落宽度 */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-features {
+    text-align: left;
+    margin-bottom: 2.5rem;
+    padding: 0 1rem;  /* 添加左右内边距 */
+}
+
+.hero-features ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;  /* 限制列表宽度 */
+    margin: 0 auto;
+}
+
+.hero-features li {
+    color: #fff;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);  /* 响应式字体大小 */
+    margin-bottom: 1rem;
+    opacity: 0.9;
+    padding-left: 1.5rem;  /* 为勾号留出空间 */
+    position: relative;  /* 为勾号定位 */
+}
+
+.hero-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 768px) {
+    .hero {
+        padding: 100px 0;  /* 移动端减小内边距 */
+        margin-top: 50px;  /* 移动端调整顶部边距 */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero {
+        padding: 80px 0;  /* 更小屏幕进一步减小内边距 */
+    }
 }
 
 .cta-button {
@@ -426,9 +486,11 @@ nav {
 }
 
 .latest-software h2 {
-    text-align: center; /* Center text */
-    margin-bottom: 2rem; /* Space below the heading */
-    font-size: 2.5rem; /* Large font size */
+    font-size: 2.5rem;
+    margin-bottom: 1rem;  /* 减小底部间距 */
+    color: #333;
+    text-align: center;  /* 添加居中对齐 */
+    width: 100%;  /* 确保标题占满宽度 */
 }
 
 .software-grid {
@@ -447,6 +509,7 @@ nav {
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
     display: flex; /* Flexbox layout */
     flex-direction: column; /* Column layout */
+    position: relative;  /* 为勾号定位做准备 */
 }
 
 .software-card:hover {
@@ -491,18 +554,65 @@ nav {
 }
 
 .software-affiliate-link {
-    display: block; /* Block layout */
-    background-color: var(--primary-color); /* Blue background */
-    color: #ffffff; /* White text */
-    text-align: center; /* Center text */
-    padding: 0.75rem 1rem; /* Padding inside the link */
-    text-decoration: none; /* No underline */
-    font-weight: bold; /* Bold text */
-    transition: background-color 0.3s ease; /* Smooth transition */
+    display: block;
+    background-color: var(--secondary-color);  /* 默认使用第二主题色 */
+    color: #ffffff;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
 }
 
 .software-affiliate-link:hover {
-    background-color: var(--secondary-color); /* Darker blue on hover */
+    background-color: var(--secondary-color);
+    opacity: 0.9;
+}
+
+/* 已完成状态的按钮使用第一主题色 */
+.software-card.completed .software-affiliate-link {
+    background-color: var(--primary-color) !important;  /* 使用第一主题色并强制优先级 */
+    color: #ffffff;
+    border: none;
+    opacity: 0.9;
+}
+
+.software-card.completed .software-affiliate-link:hover {
+    opacity: 1;
+    background-color: var(--primary-color) !important;
+}
+
+/* 完成状态的遮罩 */
+.software-card.completed::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 完成状态的勾号 */
+.software-card.completed::before {
+    content: '✓';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    z-index: 2;
 }
 
 /* Media Queries for Responsive Design */
@@ -594,7 +704,7 @@ nav {
     text-align: center; /* Center text */
     padding: 0.75rem 1rem; /* Padding inside the link */
     text-decoration: none; /* No underline */
-    font-weight: bold; /* Bold text */
+    font-weight: bold; /* Bold font weight */
     transition: background-color 0.3s ease; /* Smooth transition */
     word-wrap: break-word; /* Break long words */
     overflow-wrap: break-word; /* Ensure proper word wrapping */
@@ -1620,5 +1730,108 @@ footer {
 .arrow {
     font-size: 24px;
     color: white;
+}
+
+/* Usage instructions style */
+.usage-instructions {
+    color: #666;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;  /* 移除上下padding，只保留左右padding */
+}
+
+.usage-instructions h3 {
+    color: var(--primary-color);
+    font-size: 1.2rem;  /* 稍微减小字号 */
+    margin-bottom: 0.8rem;  /* 减小底部间距 */
+    font-weight: 500;  /* 稍微减轻字重 */
+}
+
+.usage-instructions p {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;  /* 减小底部间距 */
+    line-height: 1.5;
+}
+
+.usage-instructions ul {
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-left: 2rem;
+}
+
+.usage-instructions li {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    color: #555;
+}
+
+/* Hero Section Styles */
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #fff;
+    line-height: 1.6;
+}
+
+.hero-features {
+    text-align: left;
+    margin-bottom: 2.5rem;
+}
+
+.hero-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.hero-features li {
+    color: #fff;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    margin-bottom: 1rem;
+    opacity: 0.9;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.hero-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+}
+
+/* 调整 CTA 按钮样式 */
+.cta-button {
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    color: var(--primary-color);
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
