@@ -137,9 +137,9 @@ header {
     top: 0; /* Position at the top */
     left: 0; /* Position at the left */
     width: 100%; /* Full width */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    z-index: 1000; /* High z-index to overlay content */
     background-color: var(--white); /* White background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    z-index: 1000; /* High z-index to overlay content */
 }
 
 nav {
@@ -147,7 +147,8 @@ nav {
     display: flex; /* Use flexbox for layout */
     justify-content: space-between; /* Space between items */
     align-items: center; /* Center items vertically */
-    padding: 0.5rem 5%; /* Padding around navigation bar */
+    padding: 0.5rem 10%; /* Padding around navigation bar */
+    height: 60px;  /* 固定导航栏高度 */
 }
 
 .logo {
@@ -390,8 +391,20 @@ nav {
     text-align: center;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--white);
-    padding: 120px 0;  /* 使用固定的上下内边距，而不是 min-height */
-    margin-top: 60px;  /* 为固定导航栏留出空间 */
+    padding: 120px 0;
+    margin-top: 60px;  /* 与导航栏高度相同 */
+    position: relative;  /* 添加相对定位 */
+}
+
+/* 添加一个伪元素来填充可能的缝隙 */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -1px;  /* 向上延伸1px */
+    left: 0;
+    right: 0;
+    height: 2px;  /* 高度稍大一点以确保覆盖 */
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 }
 
 .hero-content {
@@ -1783,28 +1796,42 @@ footer {
 
 /* Style for the arrow button */
 .arrow-button {
-    margin-left: 10px;
-    display: flex;
+    display: inline-flex;  /* 改为 inline-flex */
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    min-width: 200px;  /* 设置最小宽度 */
+    margin: 1rem auto;  /* 上下边距和水平居中 */
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-color);
+    border-radius: 8px;
     text-decoration: none;
-    background-color: var(--primary-color);  /* 使用主题色变量 */
-    border-radius: 4px;
-    transition: background-color 0.3s, transform 0.3s;
+    transition: all 0.3s ease;
+}
+
+/* Style for the arrow text */
+.arrow {
+    font-size: 1rem;
+    color: white;
+    white-space: nowrap;  /* 防止文字换行 */
 }
 
 /* Style for the arrow button on hover */
 .arrow-button:hover {
-    background-color: var(--secondary-color);  /* 使用次要色变量 */
+    background-color: var(--secondary-color);
     transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Style for the arrow inside the button */
-.arrow {
-    font-size: 24px;
-    color: white;
+/* 响应式调整 */
+@media screen and (max-width: 480px) {
+    .arrow-button {
+        min-width: 180px;  /* 移动端稍微减小最小宽度 */
+        padding: 0.7rem 1.2rem;
+    }
+    
+    .arrow {
+        font-size: 0.9rem;
+    }
 }
 
 /* Usage instructions style */
@@ -1953,5 +1980,146 @@ footer {
     background-color: rgba(80, 200, 120, 0.2);  /* 使用第二主题色的半透明背景 */
     transform: translateY(-1px);  /* 轻微上浮效果 */
     color: var(--secondary-color);  /* 保持第二主题色 */
+}
+
+/* Blog Review Detail Styles */
+.blog-review-detail {
+    padding: 5rem 5%;  /* 减小左右内边距，让容器更宽 */
+    background-color: var(--white);
+}
+
+.blog-review-detail-article {
+    max-width: 1200px;  /* 增加最大宽度 */
+    margin: 0 auto;
+    padding: 3rem;  /* 增加内边距 */
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.blog-review-detail-title-h3 {
+    font-size: 2rem;  /* 增大标题字号 */
+    color: var(--text-color);
+    margin-bottom: 2rem;  /* 增加底部间距 */
+    text-align: center;
+}
+
+.blog-review-detail-image {
+    width: 100%;
+    max-width: 400px;  /* 减小图片最大宽度 */
+    height: 300px;  /* 固定高度 */
+    margin: 0 auto 3rem;  /* 增加底部间距 */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.blog-review-detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* 改为 contain 以保持图片比例 */
+    display: block;
+    background-color: #f8f9fa;  /* 添加浅色背景 */
+}
+
+.blog-review-detail-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 修改内容文字样式 */
+.blog-review-detail-excerpt-content {
+    font-size: 1.25rem;  /* 增大字体大小 */
+    line-height: 1.8;    /* 增加行高 */
+    color: #333;         /* 更深的文字颜色 */
+    margin-bottom: 2.5rem;
+    text-align: justify;
+    font-weight: 400;    /* 适中的字重 */
+    letter-spacing: 0.3px;  /* 轻微增加字间距 */
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 768px) {
+    .blog-review-detail {
+        padding: 3rem 3%;
+    }
+
+    .blog-review-detail-article {
+        padding: 2rem;
+    }
+
+    .blog-review-detail-image {
+        max-width: 300px;  /* 移动端更小的图片 */
+        height: 225px;  /* 保持 4:3 比例 */
+    }
+
+    .blog-review-detail-title-h3 {
+        font-size: 1.6rem;
+    }
+
+    .blog-review-detail-excerpt-content {
+        font-size: 1.1rem;  /* 移动端稍微小一点的字号 */
+        line-height: 1.7;
+        margin-bottom: 2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .blog-review-detail-h2 {
+        font-size: 1.75rem; /* Adjust heading font size for very small screens */
+    }
+
+    .blog-review-detail-article {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust grid columns for very small screens */
+    }
+
+    .blog-review-detail-title-h3 {
+        font-size: 1.1rem; /* Adjust title font size for very small screens */
+    }
+
+    .blog-review-detail-excerpt-content {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* SEO优化相关样式 */
+.seo-heading {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blog-review-detail-article {
+    /* 现有样式保持不变 */
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* 确保图片有合适的alt文本样式 */
+.blog-review-detail-image img {
+    /* 现有样式保持不变 */
+    max-width: 100%;
+    height: auto;
+}
+
+/* 确保内容可读性 */
+.blog-review-detail-excerpt-content {
+    /* 现有样式保持不变 */
+    max-width: 70ch;  /* 优化阅读宽度 */
+    margin-left: auto;
+    margin-right: auto;
 }
 

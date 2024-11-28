@@ -4,8 +4,22 @@
 <!-- Load static files tag -->
 {% load static %}
 
+<!-- SEO Meta Tags -->
+{% block meta %}
+<meta name="description" content="{{ blog_and_review.excerpt|truncatechars:160 }}">
+<meta name="keywords" content="baby products review, {{ blog_and_review.title|lower }}, baby essentials, new mom guide">
+<meta property="og:title" content="{{ blog_and_review.title }} - BeginMama Review">
+<meta property="og:description" content="{{ blog_and_review.excerpt|truncatechars:160 }}">
+<meta property="og:image" content="{{ blog_and_review.image.url }}">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ blog_and_review.title }} - BeginMama Review">
+<meta name="twitter:description" content="{{ blog_and_review.excerpt|truncatechars:160 }}">
+<meta name="twitter:image" content="{{ blog_and_review.image.url }}">
+{% endblock %}
+
 <!-- Set the title of the page to "Blog & Reviews" -->
-{% block title %} Blog & Reviews {% endblock %}
+{% block title %}{{ blog_and_review.title }} - Expert Review {% endblock %}
 
 <!-- Start the content block -->
 {% block content %}
@@ -16,45 +30,50 @@
 <!-- Section for the blog and review details -->
 <section id="blog-review-detail" class="blog-review-detail">
     <!-- Heading for the blog and review section -->
-    <h1 id="explore">Expert Reviews and Blogs</h1>
+    <h1 id="explore" class="seo-heading">{{ blog_and_review.title }}</h1>
 
     <!-- Check availability of blog and review -->
     {% if blog_and_review %}
     <!-- Article container for the individual blog/review -->
-    <article class="blog-review-detail-article">
+    <article class="blog-review-detail-article" itemscope itemtype="http://schema.org/Article">
+        {% comment %} <!-- Title of the blog/review -->
+        <h2 class="blog-review-detail-title-h3" itemprop="headline">
+            {{ blog_and_review.title }}
+        </h2> {% endcomment %}
+        
         <!-- Div for the blog/review image -->
         <div class="blog-review-detail-image">
             <!-- Image for the blog/review -->
-            <img src="{{ blog_and_review.image.url }}" alt="Blog/Review Image">
+            <img src="{{ blog_and_review.image.url }}" 
+                 alt="{{ blog_and_review.title }} - Product Review Image"
+                 itemprop="image">
         </div>
+        
         <!-- Div for the blog/review content -->
         <div class="blog-review-detail-content">
-            <!-- Title of the blog/review -->
-            <h3 class=".blog-review-detail-title-h3">
-                <!-- Span for the title label -->
-                <span class="blog-review-detail-title-span"></span>{{ blog_and_review.title }}
-            </h3>
             <!-- Excerpt of the blog/review -->
-            <p class="blog-review-detail-excerpt-content">
-                <!-- Span for the excerpt label -->
-                <span class="blog-review-detail-excerpt-content-span"></span> {{ blog_and_review.excerpt }}
-            </p>
+            <div itemprop="articleBody">
+                <p class="blog-review-detail-excerpt-content">
+                    {{ blog_and_review.excerpt }}
+                </p>
+            </div>
             <!-- Check availability of blog and review affiliate link and render it -->
             {% if blog_and_review.affiliate_link %}
-            <a href="{{blog_and_review.affiliate_link}}" class="arrow-button" title="Get it">
-                <span class="arrow">↗</span>
+            <a href="{{blog_and_review.affiliate_link}}" 
+               class="arrow-button" 
+               title="Purchase {{ blog_and_review.title }}"
+               target="_blank"
+               rel="noopener noreferrer">
+                <span class="arrow">Quick Purchase Link ↗</span>
             </a>
-            <!-- End if condition -->
             {% endif %}
         </div>
     </article>
-    <!-- Else condition -->
     {% else %}
     <!-- Message displayed when no blog or review found and redirect client back -->
     <p class="no-results-message">No blog or review found:
-        <a href="{% url 'homepage:homepage' %}"> Go back</a>
+        <a href="{% url 'homepage:homepage' %}">Return to Homepage</a>
     </p>
-    <!-- End if condition -->
     {% endif %}
 </section>
 
@@ -63,5 +82,28 @@
 
 <!-- Link to the JavaScript file navbar.js -->
 <script src="{% static 'js/navbar.js' %}"></script>
+
+<!-- 结构化数据标记 -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{{ blog_and_review.title }}",
+    "image": "{{ blog_and_review.image.url }}",
+    "author": {
+        "@type": "Organization",
+        "name": "BeginMama"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "BeginMama",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{% static 'images/BeginMamaLogo.png' %}"
+        }
+    },
+    "description": "{{ blog_and_review.excerpt|truncatechars:160 }}"
+}
+</script>
 
 {% endblock %}
