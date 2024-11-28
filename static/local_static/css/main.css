@@ -379,7 +379,7 @@ nav {
     .theme-switcher {
         position: absolute; /* Absolute positioning */
         right: 60px; /* Align 60px from the right */
-        align-items-center; /* Center alignment */
+        align-items: center; /* Center alignment */
     }
 }
 
@@ -603,7 +603,7 @@ nav {
     opacity: 0.9;
 }
 
-/* 已完成状态的按钮使用第一主题色 */
+/* 已完成状态的按钮使用第���主题色 */
 .software-card.completed .software-affiliate-link {
     background-color: var(--primary-color) !important;  /* 使用第一主题色并强制优先级 */
     color: #ffffff;
@@ -2164,5 +2164,13 @@ main {
     max-width: 15ch;
     margin: 0 auto 1.5rem;
     line-height: 1.2;
+}
+
+.light-text {
+    color: var(--text-primary);
+}
+
+[data-theme='dark'] .light-text {
+    color: #ffffff;
 }
 

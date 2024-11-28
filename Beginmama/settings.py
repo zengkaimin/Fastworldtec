@@ -65,22 +65,27 @@ WSGI_APPLICATION = 'Beginmama.wsgi.application'  # WSGI application module
 
 # Database
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'fastworldtec',
+#         'USER': 'root',
+#         'PASSWORD': 'root',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'connect_timeout': 10,
+#             'charset': 'utf8mb4',
+#             'use_unicode': True,
+#         }
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fastworldtec',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'OPTIONS': {
-            'connect_timeout': 10,
-            'charset': 'utf8mb4',
-            'use_unicode': True,
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 # Password validation
 
 AUTH_PASSWORD_VALIDATORS = [
