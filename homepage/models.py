@@ -1,4 +1,5 @@
 from django.db import models  # Import the models module from Django
+from django.utils import timezone  # 添加这行导入
 
 
 # Homepage Software Section object
@@ -73,22 +74,10 @@ class BlogAndReview(models.Model):
 
 # Message Section Object
 class Message(models.Model):
-    # This line is redundant and should be removed, as it's not necessary
-    objects = None
-
-    # Field for the full name of the person sending the message, with a maximum length of 100 characters
     full_name = models.CharField(max_length=100)
-
-    # Field for the email address of the person sending the message
     email = models.EmailField()
-
-    # Field for the content of the message, with no maximum length
     message = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
 
-    # Field for storing the creation date and time, automatically set when an object is created
-    date_created = models.DateField(auto_now_add=True)
-
-    # Meta class
-    class Meta:
-        # Order objects by creation date in descending order
-        ordering = ('-date_created',)
+    def __str__(self):
+        return f"Message from {self.full_name}"

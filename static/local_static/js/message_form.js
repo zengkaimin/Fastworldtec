@@ -1,76 +1,67 @@
-// Wait for the DOM content to be fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Get the contact form element
+document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contact-form');
-    // Get the submit button inside the form
-    const submitButton = form.querySelector('button[type="submit"]');
-    // Variable to track if the form has changed
-    let formChanged = false;
-
-    // Add an event listener for input changes in the form
-    form.addEventListener('input', () => {
-        // Set formChanged to true when any input changes
-        formChanged = true;
-    });
-
-    // Add an event listener for form submission
-    form.addEventListener('submit', submitHandler);
-
-    // Function to handle form submission
-    function submitHandler(e) {
-        // Prevent the default form submission behavior
+    const messagesContainer = document.querySelector('.messages-container');
+    
+    // Function to show message
+    function showMessage(type, content) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${type}`;
+        
+        const messageContent = document.createElement('p');
+        messageContent.textContent = content;
+        
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'close-btn';
+        closeBtn.innerHTML = '&times;';
+        closeBtn.onclick = function() {
+            messageDiv.remove();
+        };
+        
+        messageDiv.appendChild(messageContent);
+        messageDiv.appendChild(closeBtn);
+        messagesContainer.appendChild(messageDiv);
+        
+        // Automatically remove message after 5 seconds
+        setTimeout(() => {
+            messageDiv.classList.add('fade-out');
+            setTimeout(() => messageDiv.remove(), 500);
+        }, 5000);
+    }
+    
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
-
-        // Change the submit button text and disable it
-        submitButton.textContent = 'Sending message, please wait...';
+        
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Sending...';
         submitButton.disabled = true;
-
-        // Send the form data using fetch
-        fetch(form.action, {
+        
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const formData = new FormData(form);
+        
+        fetch(window.location.href, {
             method: 'POST',
-            body: new FormData(form),
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            body: formData
         })
-        .then((response) => {
-            // Check if the response is not ok
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            // Return the response as JSON
-            return response.json();
-        })
-        .then((data) => {
-            // Check if the response message indicates success
-            if (data.message === 'success') {
-                // Alert the user of success and reset the form
-                alert('Thank you for your message! We will get back to you soon.');
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                showMessage('success', 'Thank you for your message! We will get back to you soon. 🎉');
                 form.reset();
-                formChanged = false;
             } else {
-                // Throw an error if the submission was not successful
-                throw new Error('Submission was not successful! Please try again.');
+                showMessage('error', data.message || 'Oops! Something went wrong. Please try again.');
             }
         })
-        .catch((error) => {
-            // Log the error and alert the user of a problem
+        .catch(error => {
             console.error('Error:', error);
-            alert('There was a problem submitting your form. Please try again later.');
+            showMessage('error', 'Sorry, we couldn\'t send your message. Please try again later.');
         })
         .finally(() => {
-            // Reset the submit button text and enable it
-            submitButton.textContent = 'Send Message';
+            submitButton.textContent = originalText;
             submitButton.disabled = false;
         });
-    }
-
-    // Add an event listener for before the window unloads
-    window.addEventListener('beforeunload', (event) => {
-        // Check if the form has been changed
-        if (formChanged) {
-            // Prevent the default unload behavior
-            event.preventDefault();
-            // Set the return value to display a confirmation dialog
-            event.returnValue = '';
-            return '';
-        }
     });
 });

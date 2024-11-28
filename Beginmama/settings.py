@@ -9,7 +9,7 @@ SECRET_KEY = 'django-insecure-$5!nvt8*m_72m2i#bvwlusi*bqm47%(fe+q^96p_#+k2ev6but
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # Debug mode toggle (set to False in production)
 
-ALLOWED_HOSTS = []  # List of allowed hosts for the application
+ALLOWED_HOSTS = ['*']  # List of allowed hosts for the application
 
 # Application definition
 
@@ -132,7 +132,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'  # Default field type for a
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 使用数据库存储会话
 SESSION_COOKIE_AGE = 1209600  # 会话过期时间，2周
 SESSION_COOKIE_NAME = 'fastworldtec_sessionid'  # 自定义会话cookie名称
-SESSION_COOKIE_SECURE = False  # 开发环境使用 HTTP
+SESSION_COOKIE_SECURE = True  # 开发环境使用 HTTP
 SESSION_COOKIE_HTTPONLY = True  # 防止 JavaScript 访问会话 cookie
 SESSION_SAVE_EVERY_REQUEST = False  # 不是每个请求都保存会话
 

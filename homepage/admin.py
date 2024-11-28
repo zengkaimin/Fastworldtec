@@ -39,13 +39,13 @@ class MessageAdmin(admin.ModelAdmin):
     change_form_template = 'admin/change_form.html'
 
     # Specify the fields to display in the list view of the Message model
-    list_display = ('full_name', 'email', 'date_created',)
+    list_display = ('full_name', 'email', 'created_at')
 
     # Make specific fields read-only based on whether the object is being edited
     def get_readonly_fields(self, request, obj=None):
         if obj:  # Editing an existing object
             # Return a list of fields that should be read-only
-            return self.readonly_fields + ('full_name', 'email', 'message', 'date_created')
+            return self.readonly_fields + ('full_name', 'email', 'message', 'created_at')
         # Return the default readonly fields if no object is being edited
         return self.readonly_fields
 
