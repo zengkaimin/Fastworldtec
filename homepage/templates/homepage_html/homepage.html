@@ -8,7 +8,7 @@
 {% csrf_token %}
 
 <!-- Set the title of the page to "10 OF THE HIGHEST PAYING AFFILIATE PROGRAMS 2024" -->
-{% block title %} BeginMama: Top Choice for New Moms - Essentials from Maternity to Baby Care {% endblock %}
+{% block title %}BeginMama: Premium Baby Essentials & Expert Parenting Guide | New Mom's Complete Resource{% endblock %}
 
 <!-- Start the content block -->
 {% block content %}
@@ -63,7 +63,9 @@
             </ul>
         </div>
         <!-- Call-to-action button -->
-        <a href="#featured-products" class="cta-button">Let's Begin Your Journey</a>
+        <a href="#featured-products" class="cta-button" aria-label="Browse Premium Baby Products">
+            Discover Essential Baby Products
+        </a>
     </div>
 </section> 
 
@@ -76,7 +78,7 @@
         <!-- Baby Clothes -->
         {% for item in featured_products.baby_clothes %}
         <div class="software-card" id="card-bc-{{item.id}}">
-            <img class="software-image" src="{{item.image.url}}" alt="Baby Clothes Image">
+            <img class="software-image" src="{{item.image.url}}" alt="{{ item.title }} - Premium Baby Essential Product" loading="lazy">
             <h3 class="software-title">{{item.title}}</h3>
             <div class="price-container">
                 {% if item.price %}
@@ -98,7 +100,7 @@
         <!-- Toiletries -->
         {% for item in featured_products.toiletries %}
         <div class="software-card" id="card-tl-{{item.id}}">
-            <img class="software-image" src="{{item.image.url}}" alt="Product Image">
+            <img class="software-image" src="{{item.image.url}}" alt="{{ item.title }} - Premium Baby Essential Product" loading="lazy">
             <h3 class="software-title">{{item.title}}</h3>
             <div class="price-container">
                 {% if item.price %}
@@ -120,7 +122,7 @@
         <!-- Sleep Essentials -->
         {% for item in featured_products.sleep_essentials %}
         <div class="software-card" id="card-se-{{item.id}}">
-            <img class="software-image" src="{{item.image.url}}" alt="Product Image">
+            <img class="software-image" src="{{item.image.url}}" alt="{{ item.title }} - Premium Baby Essential Product" loading="lazy">
             <h3 class="software-title">{{item.title}}</h3>
             <div class="price-container">
                 {% if item.price %}
@@ -142,7 +144,7 @@
         <!-- Daily Essentials -->
         {% for item in featured_products.daily_essentials %}
         <div class="software-card" id="card-de-{{item.id}}">
-            <img class="software-image" src="{{item.image.url}}" alt="Product Image">
+            <img class="software-image" src="{{item.image.url}}" alt="{{ item.title }} - Premium Baby Essential Product" loading="lazy">
             <h3 class="software-title">{{item.title}}</h3>
             <div class="price-container">
                 {% if item.price %}
@@ -164,7 +166,7 @@
         <!-- Feeding Supplies -->
         {% for item in featured_products.feeding_supplies %}
         <div class="software-card" id="card-fs-{{item.id}}">
-            <img class="software-image" src="{{item.image.url}}" alt="Product Image">
+            <img class="software-image" src="{{item.image.url}}" alt="{{ item.title }} - Premium Baby Essential Product" loading="lazy">
             <h3 class="software-title">{{item.title}}</h3>
             <div class="price-container">
                 {% if item.price %}
@@ -186,7 +188,7 @@
         <!-- Large Items -->
         {% for item in featured_products.large_items %}
         <div class="software-card" id="card-li-{{item.id}}">
-            <img class="software-image" src="{{item.image.url}}" alt="Product Image">
+            <img class="software-image" src="{{item.image.url}}" alt="{{ item.title }} - Premium Baby Essential Product" loading="lazy">
             <h3 class="software-title">{{item.title}}</h3>
             <div class="price-container">
                 {% if item.price %}
@@ -407,7 +409,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Contact Section -->
 <section id="contact" class="contact">
     <!-- Heading for the contact section -->
-    <h2>Get in Touch</h2>
+    <h2>Share Your Journey! We’re Listening</h2>
     <!-- Contact form -->
     <form id="contact-form" method="POST">
         <!-- CSRF token for security -->
@@ -419,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <!-- Textarea for message -->
         <textarea name="message" placeholder="Your Message" required></textarea>
         <!-- Submit button for the form -->
-        <button type="submit">Send Message</button>
+        <button type="submit">Submit Message</button>
     </form>
 </section>
 
@@ -452,10 +454,9 @@ document.addEventListener('DOMContentLoaded', function() {
             <h3>Alternative Contacts</h3>
             <!-- Container for social icons or contact icons -->
             <div class="social-icons">
-                <!-- Phone contact icon -->
-                <a href="tel:+1 929 566 4618"><i class="fa-solid fa-phone"></i></a>
+               
                 <!-- Email contact icon -->
-                <a href="mailto:infofirstworldtec@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                <a href="mailto:zengkaimin1991@gmail.com"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
     </div>
@@ -472,6 +473,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- Link to the JavaScript file message_form.js -->
 <script src="{% static 'js/message_form.js' %}"></script>
+
+<!-- 在页面底部添加结构化数据 -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "BeginMama",
+    "url": "{{ request.build_absolute_uri }}",
+    "description": "Your trusted guide for baby essentials and new mom resources",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ request.build_absolute_uri }}search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "BeginMama",
+    "url": "{{ request.build_absolute_uri }}",
+    "logo": "{% static 'images/BeginMamaLogo.png' %}",
+    "sameAs": [
+        "https://facebook.com/beginmama",
+        "https://instagram.com/beginmama",
+        "https://pinterest.com/beginmama"
+    ]
+}
+</script>
+
+<nav aria-label="breadcrumb" class="breadcrumb-nav">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'homepage:homepage' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Baby Essentials Guide</li>
+    </ol>
+</nav>
 
 {% endblock %}
 

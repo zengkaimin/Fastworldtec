@@ -2123,3 +2123,46 @@ footer {
     margin-right: auto;
 }
 
+/* SEO优化相关样式 */
+.breadcrumb-nav {
+    padding: 1rem 10%;
+    background-color: var(--bg-color);
+}
+
+.breadcrumb {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumb-item {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "/";
+    padding: 0 0.5rem;
+}
+
+.breadcrumb-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* 确保主要内容区域的可访问性 */
+main {
+    min-height: 100vh;
+    padding-bottom: 3rem;
+}
+
+/* 优化标题层级样式 */
+.hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    max-width: 15ch;
+    margin: 0 auto 1.5rem;
+    line-height: 1.2;
+}
+

@@ -39,7 +39,15 @@
             <span class="product-page-detail-price">{{ toiletry.price }}</span>
             {% endif %}
             <p class="product-page-detail-description">{{ toiletry.description }}</p>
-            <a href="{{ toiletry.affiliate_link }}" class="product-page-detail-link">Get it now</a>
+            <a href="{{ toiletry.affiliate_link }}" 
+            class="product-page-detail-link" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            title="Shop {{ toiletry.title }} on Amazon"
+            aria-label="Purchase {{ toiletry.title }} - Best Price Available">
+            Shop Now on Amazon →
+         </a>
+
         </div>
         {% endfor %}
         {% endif %}

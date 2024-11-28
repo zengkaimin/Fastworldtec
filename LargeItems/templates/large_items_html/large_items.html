@@ -69,7 +69,15 @@
             <!-- Description of the tool -->
             <p class="product-page-detail-description">{{ large_item.description }}</p>
             <!-- Link to get the tool -->
-            <a href="{{ large_item.affiliate_link }}" class="product-page-detail-link">Get it now</a>
+            <a href="{{ large_item.affiliate_link }}" 
+            class="product-page-detail-link" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            title="Shop {{ large_item.title }} on Amazon"
+            aria-label="Purchase {{ large_item.title }} - Best Price Available">
+            Shop Now on Amazon →
+         </a>
+
 
         </div>
         <!-- End loop -->

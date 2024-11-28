@@ -75,7 +75,14 @@
             <!-- Description of the baby clothes -->
             <p class="product-page-detail-description">{{ baby_clothes.description }}</p>
             <!-- Link to get the baby clothes -->
-            <a href="{{ baby_clothes.affiliate_link }}" class="product-page-detail-link">Get it now</a>
+            <a href="{{ baby_clothes.affiliate_link }}" 
+               class="product-page-detail-link" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               title="Shop {{ baby_clothes.title }} on Amazon"
+               aria-label="Purchase {{ baby_clothes.title }} - Best Price Available">
+               Shop Now on Amazon →
+            </a>
 
         </div>
         <!-- End for loop -->

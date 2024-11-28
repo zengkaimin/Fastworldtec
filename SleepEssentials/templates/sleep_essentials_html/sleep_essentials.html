@@ -39,7 +39,15 @@
             <span class="product-page-detail-price">{{ sleep_essential.price }}</span>
             {% endif %}
             <p class="product-page-detail-description">{{ sleep_essential.description }}</p>
-            <a href="{{ sleep_essential.affiliate_link }}" class="product-page-detail-link">Get it now</a>
+            <a href="{{ sleep_essential.affiliate_link }}" 
+            class="product-page-detail-link" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            title="Shop {{ sleep_essential.title }} on Amazon"
+            aria-label="Purchase {{ sleep_essential.title }} - Best Price Available">
+            Shop Now on Amazon →
+         </a>
+
         </div>
         {% endfor %}
         {% endif %}

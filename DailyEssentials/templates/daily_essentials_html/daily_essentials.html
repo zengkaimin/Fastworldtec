@@ -70,7 +70,15 @@
             <!-- Description of the daily essential -->
             <p class="product-page-detail-description">{{ daily_essential.description }}</p>
             <!-- Link to get the daily essential -->
-            <a href="{{ daily_essential.affiliate_link }}" class="product-page-detail-link">Get it now</a>
+            <a href="{{ daily_essential.affiliate_link }}"     
+            class="product-page-detail-link" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            title="Shop {{ daily_essential.title }} on Amazon"
+            aria-label="Purchase {{ daily_essential.title }} - Best Price Available">
+            Shop Now on Amazon →
+         </a>
+
 
         </div>
         <!-- End loop -->

@@ -70,7 +70,15 @@
             <!-- Description of the feeding supply -->
             <p class="product-page-detail-description">{{ feeding_supply.description }}</p>
             <!-- Link to get the feeding supply -->
-            <a href="{{ feeding_supply.affiliate_link }}" class="product-page-detail-link">Get it now</a>
+            <a href="{{ feeding_supply.affiliate_link }}" 
+            class="product-page-detail-link" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            title="Shop {{ feeding_supply.title }} on Amazon"
+            aria-label="Purchase {{ feeding_supply.title }} - Best Price Available">
+            Shop Now on Amazon →
+         </a>
+
 
         </div>
         <!-- End for loop -->
