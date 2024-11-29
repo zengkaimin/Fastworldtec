@@ -15,3 +15,6 @@ media/
 
 # Virtual Environment
 .venv/
+
+# Database
+data/
