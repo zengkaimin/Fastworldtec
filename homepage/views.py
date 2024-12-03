@@ -72,25 +72,20 @@ def homepage_view(request):
 
     return render(request, 'homepage_html/homepage.html', context)
 
-def blog_and_review_detail_view(request, pk):
+def blog_and_review_detail(request, slug):
     """
-    显示单个博客和评论的详细视图
+    View function for displaying a specific blog or review.
     """
-    try:
-        # 获取指定的博客和评论，如果不存在则返回404
-        blog_and_review = get_object_or_404(BlogAndReview, pk=pk)
-        
-        # 准备上下文数据
-        context = {
-            'blog_and_review': blog_and_review
-        }
-        
-        # 渲染详细页面
-        return render(request, 'homepage_html/blog_and_review_detail.html', context)
-        
-    except Exception as e:
-        messages.error(request, f'An error occurred: {str(e)}')
-        return render(request, 'homepage_html/blog_and_review_detail.html', {'blog_and_review': None})
+    # Get the specific blog or review object or return 404 if not found
+    blog_and_review = get_object_or_404(BlogAndReview, slug=slug)
+    
+    # Create a context dictionary with the blog or review object
+    context = {
+        'blog_and_review': blog_and_review,
+    }
+    
+    # Render the blog and review detail template with the context
+    return render(request, 'homepage_html/blog_and_review_detail.html', context)
 
 def mark_as_completed(request):
     if request.method == 'POST':

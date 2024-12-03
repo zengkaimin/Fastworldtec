@@ -1,5 +1,6 @@
 from django.db import models  # Import the models module from Django
 from django.utils import timezone  # 添加这行导入
+from mdeditor.fields import MDTextField  # Import the MDTextField module from mdeditor
 
 
 # Homepage Software Section object
@@ -7,7 +8,7 @@ class HomepageSoftware(models.Model):
     objects = None  # Add to prevent unresolved attribute reference error in views.py in PYCHARM.
 
     # Field for storing an image, uploaded to 'homepage_software_images' directory
-    image = models.ImageField(upload_to='homepage_software_images')
+    image = models.ImageField(upload_to='homepage_software_images', blank=True, null=True)
 
     # Field for the title of the software, with a maximum length of 255 characters
     title = models.CharField(max_length=255)
@@ -44,19 +45,44 @@ class BlogAndReview(models.Model):
     objects = None  # Add to prevent unresolved attribute reference error in views.py in PYCHARM.
 
     # Field for storing an image, uploaded to 'blog_and_review_images' directory
-    image = models.ImageField(upload_to='blog_and_review_images')
+    image = models.ImageField(upload_to='blog_and_review_images', blank=True, null=True)
 
     # Field for the title of the blog or review, with a maximum length of 255 characters
     title = models.CharField(max_length=255)
 
+    # Field for the URL slug, generated from title
+    slug = models.SlugField(max_length=255, unique=True, blank=True)
+
     # Field for an excerpt or summary of the blog or review, with no maximum length
-    excerpt = models.TextField()
+    excerpt = models.TextField(blank=True, null=True)
+
+    # Field for storing the markdown content
+    content = MDTextField(blank=True)
 
     # Field for storing an affiliate link, optional, with a maximum length of 2083 characters
     affiliate_link = models.CharField(max_length=2083, blank=True)
 
     # Field for storing the creation date and time, automatically set when an object is created
     date_and_time_created = models.DateTimeField(auto_now_add=True)
+
+    def get_content_html(self):
+        import markdown2
+        extras = ['fenced-code-blocks', 'tables', 'code-friendly']
+        return markdown2.markdown(self.content, extras=extras) if self.content else ''
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            from django.utils.text import slugify
+            # 生成基础slug
+            base_slug = slugify(self.title)
+            # 检查是否存在相同的slug
+            slug = base_slug
+            n = 1
+            while BlogAndReview.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{n}"
+                n += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     # Meta class
     class Meta:

@@ -51,11 +51,12 @@
         
         <!-- Div for the blog/review content -->
         <div class="blog-review-detail-content">
-            <!-- Excerpt of the blog/review -->
             <div itemprop="articleBody">
-                <p class="blog-review-detail-excerpt-content">
-                    {{ blog_and_review.excerpt }}
-                </p>
+                {% if blog_and_review.content %}
+                <div class="blog-review-detail-content-markdown">
+                    {{ blog_and_review.get_content_html|safe }}
+                </div>
+                {% endif %}
             </div>
             <!-- Check availability of blog and review affiliate link and render it -->
             {% if blog_and_review.affiliate_link %}

@@ -14,7 +14,6 @@ ALLOWED_HOSTS = ['*']  # List of allowed hosts for the application
 # Application definition
 
 INSTALLED_APPS = [
-    #"unfold",  # before django.contrib.admin
     'django.contrib.admin',  # Django admin app
     'django.contrib.auth',  # Django authentication app
     'django.contrib.contenttypes',  # Django content types app
@@ -31,6 +30,7 @@ INSTALLED_APPS = [
     'toiletries.apps.ToiletriesConfig',
     'DailyEssentials.apps.DailyEssentialsConfig',  # Local app: Daily Essentials
     'LargeItems.apps.LargeItemsConfig',  # Local app: Large Items
+    'mdeditor',  # Added mdeditor
 ]
 
 MIDDLEWARE = [

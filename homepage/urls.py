@@ -9,8 +9,8 @@ urlpatterns = [
     # Define url to map the 'homepage_view' function in views.py
     path('', views.homepage_view, name='homepage'),
 
-    # Define a URL pattern for the blog_and_review view
-    path('blogs&reviews/<int:pk>/', views.blog_and_review_detail_view, name='detail_blog_review'),
+    # URL pattern for blog and review detail page
+    path('blog/<slug:slug>/', views.blog_and_review_detail, name='blog_and_review_detail'),
 
     path('mark-completed/', views.mark_as_completed, name='mark_completed'),
 

@@ -371,8 +371,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <!-- Excerpt of the blog or review -->
                 <p class="blog-excerpt">{{single_blog_and_review.excerpt}}</p>
                 <!-- Link to the detailed blog or review page -->
-                <a href="{% url 'homepage:detail_blog_review' single_blog_and_review.id %}" class="blog-link">Read
-                    More</a>
+                <a href="{% url 'homepage:blog_and_review_detail' single_blog_and_review.slug %}" class="blog-link">Read More</a>
             </div>
         </article>
         <!-- End for loop -->
