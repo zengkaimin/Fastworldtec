@@ -67,8 +67,29 @@ class BlogAndReview(models.Model):
 
     def get_content_html(self):
         import markdown2
+        import re
+        
+        content = self.content if self.content else ''
+        
+        # 处理没有alt文本的图片
+        def process_images(content):
+            # 匹配markdown图片语法: ![alt](url) 或 ![](url)
+            pattern = r'!\[(.*?)\]\((.*?)\)'
+            def replace(match):
+                alt, url = match.groups()
+                # 如果没有alt文本，使用博客标题
+                if not alt:
+                    alt = self.title
+                return f'![{alt}]({url})'
+            
+            return re.sub(pattern, replace, content)
+        
+        # 处理图片的alt文本
+        content = process_images(content)
+        
+        # 转换markdown为HTML
         extras = ['fenced-code-blocks', 'tables', 'code-friendly']
-        return markdown2.markdown(self.content, extras=extras) if self.content else ''
+        return markdown2.markdown(content, extras=extras)
 
     def save(self, *args, **kwargs):
         if not self.slug:
