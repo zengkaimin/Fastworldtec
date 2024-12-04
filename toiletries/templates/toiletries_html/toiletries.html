@@ -36,7 +36,13 @@
             <img class="product-page-detail-image" src="{{ toiletry.image.url }}" alt="Toiletry Image">
             <h3 class="product-page-detail-title">{{ toiletry.title }}</h3>
             {% if toiletry.price %}
-            <span class="product-page-detail-price">{{ toiletry.price }}</span>
+            <div class="price-container">
+                <span class="price-label">Price: </span>
+                <span class="product-page-detail-price">
+                    <span class="currency-symbol">$</span>
+                    <span class="price-amount">{{ toiletry.price }}</span>
+                </span>
+            </div>
             {% endif %}
             <p class="product-page-detail-description">{{ toiletry.description }}</p>
             <a href="{{ toiletry.affiliate_link }}" 

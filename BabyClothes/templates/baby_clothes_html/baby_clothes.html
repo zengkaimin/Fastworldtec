@@ -66,9 +66,10 @@
             {% if baby_clothes.price %}
             <!-- Display the price of the baby clothes -->
             <div class="price-container">
+                <span class="price-label">Price: </span>
                 <span class="product-page-detail-price">
                     <span class="currency-symbol">$</span>
-                    {{ baby_clothes.price }}
+                    <span class="price-amount">{{ baby_clothes.price }}</span>
                 </span>
             </div>
             {% endif %}

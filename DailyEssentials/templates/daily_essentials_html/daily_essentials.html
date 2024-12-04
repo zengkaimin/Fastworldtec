@@ -64,8 +64,13 @@
 
             <!-- Check if price is available and render it -->
             {% if daily_essential.price %}
-            <!-- Display the price of the daily essential -->
-            <span class="product-page-detail-price">{{ daily_essential.price }}</span>
+            <div class="price-container">
+                <span class="price-label">Price: </span>
+                <span class="product-page-detail-price">
+                    <span class="currency-symbol">$</span>
+                    <span class="price-amount">{{ daily_essential.price }}</span>
+                </span>
+            </div>
             {% endif %}
             <!-- Description of the daily essential -->
             <p class="product-page-detail-description">{{ daily_essential.description }}</p>
