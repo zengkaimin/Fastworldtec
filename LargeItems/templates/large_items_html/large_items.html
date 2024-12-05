@@ -4,8 +4,8 @@
 <!-- Load static files tag -->
 {% load static %}
 
-<!-- Set the title of the page to "Tools" -->
-{% block title %} Tools {% endblock %}
+<!-- Set the title of the page to "Large Items" -->
+{% block title %} Large Items {% endblock %}
 
 <!-- Start the content block -->
 {% block content %}
@@ -14,7 +14,7 @@
 
 {% include 'global_templates/global_navbar.html' %}
 
-<!-- Section for displaying tool details -->
+<!-- Section for displaying large item details -->
 <section id="product-page-detail" class="product-page-detail">
     <!-- Heading for the large items section -->
     <h1 id="explore">All Large Items</h1>
@@ -71,9 +71,9 @@
                 </span>
             </div>
             {% endif %}
-            <!-- Description of the tool -->
+            <!-- Description of the large item -->
             <p class="product-page-detail-description">{{ large_item.description }}</p>
-            <!-- Link to get the tool -->
+            <!-- Link to get the large item -->
             <a href="{{ large_item.affiliate_link }}" 
             class="product-page-detail-link" 
             target="_blank" 
