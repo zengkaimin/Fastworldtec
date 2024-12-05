@@ -74,7 +74,9 @@
             </div>
             {% endif %}
             <!-- Description of the baby clothes -->
-            <p class="product-page-detail-description">{{ baby_clothes.description }}</p>
+            <div class="product-page-detail-description">
+                {{ baby_clothes.get_content_html|safe }}
+            </div>
             <!-- Link to get the baby clothes -->
             <a href="{{ baby_clothes.affiliate_link }}" 
                class="product-page-detail-link" 

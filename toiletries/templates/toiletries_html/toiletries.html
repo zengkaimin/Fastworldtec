@@ -44,7 +44,9 @@
                 </span>
             </div>
             {% endif %}
-            <p class="product-page-detail-description">{{ toiletry.description }}</p>
+            <div class="product-page-detail-description">
+                {{ toiletry.get_content_html|safe }}
+            </div>
             <a href="{{ toiletry.affiliate_link }}" 
             class="product-page-detail-link" 
             target="_blank" 

@@ -1,5 +1,5 @@
 from django.db import models  # Import the models module from django.db
-
+from mdeditor.fields import MDTextField
 
 # BabyClothes object
 class BabyClothes(models.Model):
@@ -14,8 +14,8 @@ class BabyClothes(models.Model):
     # CharField for the course price with a maximum length of 50 characters, can be blank
     price = models.CharField(max_length=50, blank=True)
 
-    # TextField for the course description, can be blank
-    description = models.TextField(blank=True)
+    # MDTextField for the course description, can be blank
+    description = MDTextField(blank=True)
 
     # CharField for the affiliate link with a maximum length of 2083 characters
     affiliate_link = models.CharField(max_length=2083)
@@ -38,3 +38,29 @@ class BabyClothes(models.Model):
     # Function to return the course title in admin portal
     def __str__(self):
         return self.title
+
+    def get_content_html(self):
+        import markdown2
+        import re
+        
+        content = self.description if self.description else ''
+        
+        # 处理没有alt文本的图片
+        def process_images(content):
+            # 匹配markdown图片语法: ![alt](url) 或 ![](url)
+            pattern = r'!\[(.*?)\]\((.*?)\)'
+            def replace(match):
+                alt, url = match.groups()
+                # 如果没有alt文本，使用商品名称
+                if not alt:
+                    alt = self.title
+                return f'![{alt}]({url})'
+            
+            return re.sub(pattern, replace, content)
+        
+        # 处理图片的alt文本
+        content = process_images(content)
+        
+        # 转换markdown为HTML
+        extras = ['fenced-code-blocks', 'tables', 'code-friendly']
+        return markdown2.markdown(content, extras=extras)

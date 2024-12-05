@@ -146,4 +146,7 @@ CACHES = {
     }
 }
 
+# Markdown settings
+MARKDOWN_EXTRAS = ['fenced-code-blocks', 'tables', 'code-friendly']
+
 # 安全相关配置

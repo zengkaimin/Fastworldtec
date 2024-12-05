@@ -1,9 +1,13 @@
 from django import forms  # Import forms module from Django
 from .models import FeedingSupplies  # Import the FeedingSupplies model from the current app's models file
+from mdeditor.fields import MDTextFormField  # Import MDTextFormField from mdeditor
 
 
 # Define a custom form class for the FeedingSupplies model
 class FeedingSuppliesForm(forms.ModelForm):
+    # Add a markdown text field for the description
+    description = MDTextFormField()
+
     # Metaclass to specify the model and fields to use
     class Meta:
         # Specify the model to use for the form

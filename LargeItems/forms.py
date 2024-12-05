@@ -1,9 +1,13 @@
 from django import forms  # Import forms module from Django
 from .models import LargeItems  # Import the LargeItems model from the current app's models file
+from mdeditor.fields import MDTextFormField  # Import MDTextFormField from mdeditor
 
 
 # Define a custom form class for the LargeItems model
 class LargeItemsForm(forms.ModelForm):
+    # Add a markdown text field for the description
+    description = MDTextFormField()
+    
     # Metaclass to specify the model and fields to use
     class Meta:
         # Specify the model to use for the form

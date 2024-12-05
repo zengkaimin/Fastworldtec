@@ -72,8 +72,10 @@
                 </span>
             </div>
             {% endif %}
-            <!-- Description of the feeding supply -->
-            <p class="product-page-detail-description">{{ feeding_supply.description }}</p>
+            <!-- Description of the feeding supplies -->
+            <div class="product-page-detail-description">
+                {{ feeding_supply.get_content_html|safe }}
+            </div>
             <!-- Link to get the feeding supply -->
             <a href="{{ feeding_supply.affiliate_link }}" 
             class="product-page-detail-link" 

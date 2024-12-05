@@ -72,8 +72,10 @@
                 </span>
             </div>
             {% endif %}
-            <!-- Description of the daily essential -->
-            <p class="product-page-detail-description">{{ daily_essential.description }}</p>
+            <!-- Description of the daily essentials -->
+            <div class="product-page-detail-description">
+                {{ daily_essential.get_content_html|safe }}
+            </div>
             <!-- Link to get the daily essential -->
             <a href="{{ daily_essential.affiliate_link }}"     
             class="product-page-detail-link" 

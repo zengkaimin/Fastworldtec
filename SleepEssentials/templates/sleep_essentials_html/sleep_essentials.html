@@ -45,7 +45,9 @@
                 </span>
             </div>
             {% endif %}
-            <p class="product-page-detail-description">{{ sleep_essential.description }}</p>
+            <div class="product-page-detail-description">
+                {{ sleep_essential.get_content_html|safe }}
+            </div>
             <a href="{{ sleep_essential.affiliate_link }}" 
             class="product-page-detail-link" 
             target="_blank" 

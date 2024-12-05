@@ -1,9 +1,11 @@
 from django import forms  # Import forms module from Django
 from .models import BabyClothes  # Import the BabyClothes model from the current app's models file
-
+from mdeditor.fields import MDTextFormField
 
 # Define a custom form class for the BabyClothes model
 class BabyClothesForm(forms.ModelForm):
+    description = MDTextFormField()
+    
     # Metaclass to specify the model and fields to use
     class Meta:
         # Specify the model to use for the form

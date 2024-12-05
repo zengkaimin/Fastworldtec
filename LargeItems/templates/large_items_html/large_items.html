@@ -71,8 +71,10 @@
                 </span>
             </div>
             {% endif %}
-            <!-- Description of the large item -->
-            <p class="product-page-detail-description">{{ large_item.description }}</p>
+            <!-- Description of the large items -->
+            <div class="product-page-detail-description">
+                {{ large_item.get_content_html|safe }}
+            </div>
             <!-- Link to get the large item -->
             <a href="{{ large_item.affiliate_link }}" 
             class="product-page-detail-link" 
