@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.http import JsonResponse
+from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from .models import HomepageSoftware, BlogAndReview, Message  # 本应用的模型
 from .forms import MessageForm  # 添加这行导入
 # 从其他应用导入模型
@@ -11,9 +12,9 @@ from FeedingSupplies.models import FeedingSupplies
 from LargeItems.models import LargeItems
 from SleepEssentials.models import SleepEssentials
 from toiletries.models import Toiletries
-from django.views.decorators.csrf import ensure_csrf_cookie
 
 @ensure_csrf_cookie
+@csrf_exempt
 def homepage_view(request):
     # Handle POST requests to collect and save user messages
     if request.method == 'POST':
@@ -87,6 +88,7 @@ def blog_and_review_detail(request, slug):
     # Render the blog and review detail template with the context
     return render(request, 'homepage_html/blog_and_review_detail.html', context)
 
+@csrf_exempt
 def mark_as_completed(request):
     if request.method == 'POST':
         product_id = request.POST.get('product_id')

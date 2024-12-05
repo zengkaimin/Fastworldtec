@@ -11,6 +11,21 @@ DEBUG = True  # Debug mode toggle (set to False in production)
 
 ALLOWED_HOSTS = ['*']  # List of allowed hosts for the application
 
+# CSRF and Security Settings
+CSRF_TRUSTED_ORIGINS = [
+    'https://beginmama.com',
+    'http://beginmama.com',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000'
+]
+
+# Session and Cookie Settings
+SESSION_COOKIE_SECURE = False  # 开发环境使用 HTTP
+CSRF_COOKIE_SECURE = False    # 开发环境使用 HTTP
+CSRF_USE_SESSIONS = False     # 使用cookie存储CSRF令牌
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',  # 会话中间件放在最前
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
-     #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -117,10 +132,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'  # Default field type for a
 # Session 配置
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 使用数据库存储会话
 SESSION_COOKIE_AGE = 1209600  # 会话过期时间，2周
-SESSION_COOKIE_NAME = 'fastworldtec_sessionid'  # 自定义会话cookie名称
-SESSION_COOKIE_SECURE = True  # 开发环境使用 HTTP
-SESSION_COOKIE_HTTPONLY = True  # 防止 JavaScript 访问会话 cookie
-SESSION_SAVE_EVERY_REQUEST = False  # 不是每个请求都保存会话
 
 # 缓存配置
 CACHES = {
@@ -136,6 +147,3 @@ CACHES = {
 }
 
 # 安全相关配置
-CSRF_COOKIE_SECURE = False  # 开发环境使用 HTTP
-CSRF_COOKIE_HTTPONLY = True
-CSRF_USE_SESSIONS = True  # 将 CSRF 令牌存储在会话中而不是 cookie 中
