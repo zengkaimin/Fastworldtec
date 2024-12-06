@@ -1146,26 +1146,29 @@ footer {
     right: 0; /* Align to right */
     background: #f1f1f1; /* Light background color */
     color: #333; /* Dark text color */
-    padding: 10px; /* Padding inside banner */
-    text-align: center; /* Center align text */
+    padding: 10px 20px;
     z-index: 9999; /* High z-index to be on top */
-    display: none; /* Hidden by default */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    text-align: center;
 }
 
 .cookie-banner p {
-    margin: 0; /* Remove margin */
-    padding: 0; /* Remove padding */
-    display: inline-block; /* Inline block layout */
+    margin: 0;
+    padding: 0;
+    display: inline;
+    margin-right: 10px;
 }
 
 .cookie-banner button {
-    border: none; /* No border */
-    padding: 5px 10px; /* Padding inside button */
-    margin-left: 10px; /* Space between button and text */
-    cursor: pointer; /* Pointer cursor */
-    color: #999; /* Placeholder color */
-    display: none; /* Hidden by default */
-    transition: color 0.3s ease; /* Smooth transition on hover */
+    display: inline-block;
+    border: none;
+    padding: 6px 12px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
 #accept-cookies {
@@ -1296,7 +1299,7 @@ footer {
 
 .search-input {
     width: 100%; /* Full width */
-    padding: 15px 20px; /* Padding inside the input */
+    padding: 15px; /* Padding inside the input */
     font-size: 16px; /* Font size */
     border: none; /* No border */
     background-color: transparent; /* Transparent background */
@@ -1680,7 +1683,7 @@ footer {
     }
     to {
         opacity: 1; /* End with full opacity */
-        transform: translateY(0); /* End with no movement */
+        transform: translateY(0); /* End at original position */
     }
 }
 
@@ -2264,3 +2267,4 @@ main {
 .blog-review-detail-content-markdown a:hover {
     text-decoration: underline;
 }
+
